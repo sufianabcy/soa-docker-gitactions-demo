@@ -6,8 +6,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: klustudentdb
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -16,6 +14,8 @@ services:
   backend:
     image: littleslup/docker-git-actions-backend:latest
     container_name: docker-springboot
+    environment:
+      SPRING_DATASOURCE_PASSWORD: root
     ports:
       - "2025:2000"
     depends_on:
